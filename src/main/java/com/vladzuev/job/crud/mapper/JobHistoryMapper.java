@@ -1,7 +1,6 @@
 package com.vladzuev.job.crud.mapper;
 
 import by.nhorushko.crudgeneric.v2.mapper.AbsMapperEntityDto;
-import com.vladzuev.job.crud.dto.Job;
 import com.vladzuev.job.crud.dto.JobHistory;
 import com.vladzuev.job.crud.entity.JobEntity;
 import com.vladzuev.job.crud.entity.JobHistoryEntity;
@@ -23,12 +22,22 @@ public final class JobHistoryMapper extends AbsMapperEntityDto<JobHistoryEntity,
                 entity.getId(),
                 entity.getTime(),
                 entity.getStatus(),
-                this.mapJob(entity)
+                extractJobId(entity)
         );
     }
 
-    private Job mapJob(final JobHistoryEntity entity) {
-        final JobEntity job = entity.getJob();
-        return super.modelMapper.map(job, Job.class);
+    @Override
+    protected void mapSpecificFields(final JobHistory source, final JobHistoryEntity destination) {
+        this.setJob(destination, source);
+    }
+
+    private static Long extractJobId(final JobHistoryEntity entity) {
+        return entity.getJob().getId();
+    }
+
+    private void setJob(final JobHistoryEntity destination, final JobHistory source) {
+        final Long jobId = source.getJobId();
+        final JobEntity job = super.entityManager.getReference(JobEntity.class, jobId);
+        destination.setJob(job);
     }
 }

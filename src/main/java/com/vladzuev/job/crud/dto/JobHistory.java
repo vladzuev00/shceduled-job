@@ -11,6 +11,5 @@ public class JobHistory implements AbstractDto<Long> {
     Long id;
     Instant time;
     JobHistoryStatus status;
-    //TODO: возможно достаточно job's id
-    Job job;
+    Long jobId;
 }
