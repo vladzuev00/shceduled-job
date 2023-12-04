@@ -30,9 +30,9 @@ CREATE TYPE job_history_status AS ENUM('SUCCESS', 'FAILED');
 
 CREATE TABLE job_histories(
     id SERIAL PRIMARY KEY,
-    job_id INTEGER NOT NULL,
-    time TIMESTAMP(0),
-    status job_history_status NOT NULL
+    time TIMESTAMP(0) NOT NULL,
+    status job_history_status NOT NULL,
+    job_id INTEGER NOT NULL
 );
 
 ALTER TABLE job_histories
