@@ -15,7 +15,7 @@ import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "jobs")
+@Table(name = "job_histories")
 @TypeDef(
         name = "pgsql_enum",
         typeClass = PostgreSQLEnumType.class
