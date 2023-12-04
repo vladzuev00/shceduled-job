@@ -1,5 +1,6 @@
 package com.vladzuev.job.crud.entity;
 
+import by.nhorushko.crudgeneric.v2.domain.AbstractEntity;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLEnumType;
 import com.vladzuev.job.crud.model.JobHistoryStatus;
 import lombok.*;
@@ -7,7 +8,6 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
-
 import java.time.Instant;
 
 import static javax.persistence.EnumType.STRING;
@@ -26,7 +26,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Getter
 @ToString
 @Builder
-public class JobHistoryEntity {
+public class JobHistoryEntity implements AbstractEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
