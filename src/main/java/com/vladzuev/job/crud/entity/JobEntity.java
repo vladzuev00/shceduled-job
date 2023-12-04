@@ -1,4 +1,4 @@
-package com.vladzuev.job.crud;
+package com.vladzuev.job.crud.entity;
 
 import by.nhorushko.crudgeneric.v2.domain.AbstractEntity;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLEnumType;

@@ -1,4 +1,4 @@
-package com.vladzuev.job.crud;
+package com.vladzuev.job.crud.entity;
 
 import lombok.*;
 import org.hibernate.Hibernate;
