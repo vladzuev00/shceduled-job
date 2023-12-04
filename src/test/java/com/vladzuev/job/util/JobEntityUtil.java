@@ -20,4 +20,10 @@ public final class JobEntityUtil {
         assertEquals(expected.getParams(), actual.getParams());
         assertEquals(expected.getUser(), actual.getUser());
     }
+
+    public static JobEntity createJobEntity(final Long id) {
+        return JobEntity.builder()
+                .id(id)
+                .build();
+    }
 }

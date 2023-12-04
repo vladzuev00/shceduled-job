@@ -6,9 +6,11 @@ import com.vladzuev.job.crud.dto.JobHistory;
 import com.vladzuev.job.crud.entity.JobEntity;
 import com.vladzuev.job.crud.entity.JobHistoryEntity;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 
+@Component
 public final class JobHistoryMapper extends AbsMapperEntityDto<JobHistoryEntity, JobHistory> {
 
     public JobHistoryMapper(final ModelMapper modelMapper, final EntityManager entityManager) {

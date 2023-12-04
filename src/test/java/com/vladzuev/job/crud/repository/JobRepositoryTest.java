@@ -1,4 +1,4 @@
-package com.vladzuev.job.repository;
+package com.vladzuev.job.crud.repository;
 
 import com.vladzuev.job.base.AbstractContextTest;
 import com.vladzuev.job.crud.entity.JobEntity;
