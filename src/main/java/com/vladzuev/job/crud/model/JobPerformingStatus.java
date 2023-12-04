@@ -1,5 +1,5 @@
 package com.vladzuev.job.crud.model;
 
-public enum JobHistoryStatus {
+public enum JobPerformingStatus {
     SUCCESS, FAILED
 }

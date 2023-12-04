@@ -2,7 +2,7 @@ package com.vladzuev.job.crud.entity;
 
 import by.nhorushko.crudgeneric.v2.domain.AbstractEntity;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLEnumType;
-import com.vladzuev.job.crud.model.JobHistoryStatus;
+import com.vladzuev.job.crud.model.JobPerformingStatus;
 import lombok.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
@@ -37,9 +37,9 @@ public class JobHistoryEntity implements AbstractEntity<Long> {
     private Instant time;
 
     @Enumerated(STRING)
-    @Column(name = "status")
+    @Column(name = "completion_status")
     @Type(type = "pgsql_enum")
-    private JobHistoryStatus status;
+    private JobPerformingStatus status;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "job_id")
