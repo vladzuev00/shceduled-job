@@ -14,12 +14,13 @@ CREATE TABLE users(
 CREATE TABLE jobs(
     id SERIAL PRIMARY KEY,
     status job_status NOT NULL,
+    type job_type NOT NULL,
     run_mode job_run_mode NOT NULL,
-    next_execution_time TIMESTAMP(0) NOT NULL,
+    init_time TIMESTAMP(0) NOT NULL,
     run_interval_value INTEGER NOT NULL,
     run_interval_scale job_run_interval_scale NOT NULL,
-    user_id INTEGER NOT NULL,
-    params JSONB NOT NULL
+    params JSONB NOT NULL,
+    user_id INTEGER NOT NULL
 );
 
 ALTER TABLE jobs
