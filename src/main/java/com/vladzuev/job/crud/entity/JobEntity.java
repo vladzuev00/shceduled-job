@@ -2,6 +2,7 @@ package com.vladzuev.job.crud.entity;
 
 import by.nhorushko.crudgeneric.v2.domain.AbstractEntity;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLEnumType;
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import com.vladzuev.job.crud.model.JobRunIntervalScale;
 import com.vladzuev.job.crud.model.JobRunMode;
 import com.vladzuev.job.crud.model.JobStatus;
@@ -22,6 +23,10 @@ import static javax.persistence.GenerationType.IDENTITY;
 @TypeDef(
         name = "pgsql_enum",
         typeClass = PostgreSQLEnumType.class
+)
+@TypeDef(
+        name = "jsonb",
+        typeClass = JsonBinaryType.class
 )
 @NoArgsConstructor
 @AllArgsConstructor

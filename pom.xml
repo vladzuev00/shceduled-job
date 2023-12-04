@@ -5,7 +5,19 @@
   <groupId>org.example</groupId>
   <artifactId>shceduled-job</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>10</source>
+                    <target>10</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <packaging>jar</packaging>
 
   <name>shceduled-job</name>
   <url>http://maven.apache.org</url>
@@ -21,6 +33,11 @@
   </parent>
 
   <dependencies>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -54,6 +71,11 @@
       <groupId>com.github.NikolayNN.crud-generic</groupId>
       <artifactId>crud-abstract-generic</artifactId>
       <version>10.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
     </dependency>
 
     <dependency>

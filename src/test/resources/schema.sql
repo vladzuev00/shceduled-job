@@ -6,9 +6,8 @@ CREATE TYPE job_run_mode AS ENUM('PERIODIC', 'ONCE');
 
 CREATE TYPE job_run_interval_scale AS ENUM('DAY', 'WEEK', 'MONTH');
 
---TODO: remove
 CREATE TABLE users(
-    id SERIAL NOT NULL
+    id SERIAL PRIMARY KEY
 );
 
 CREATE TABLE jobs(
