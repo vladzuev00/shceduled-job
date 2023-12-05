@@ -1,20 +1,15 @@
 package com.vladzuev.schedulingtask.service.scheduledtask;
 
-import com.vladzuev.schedulingtask.model.ScheduledTaskParams;
+import by.nhorushko.crudgeneric.v2.domain.AbstractDto;
 import com.vladzuev.schedulingtask.model.SchedulingConfiguration;
+import com.vladzuev.schedulingtask.model.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-public abstract class ScheduledTask<P extends ScheduledTaskParams> {
+public abstract class ScheduledTask implements AbstractDto<Long> {
+    private final Long id;
     private final SchedulingConfiguration configuration;
-    private final P params;
-
-    //TODO: remove
-    public final void execute() {
-        this.execute(this.params);
-    }
-
-    protected abstract void execute(final P params);
+    private final User user;
 }

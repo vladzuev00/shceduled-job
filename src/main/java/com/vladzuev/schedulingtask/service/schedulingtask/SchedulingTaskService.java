@@ -2,13 +2,16 @@ package com.vladzuev.schedulingtask.service.schedulingtask;
 
 import com.vladzuev.schedulingtask.model.SchedulingConfiguration;
 import com.vladzuev.schedulingtask.service.scheduledtask.ScheduledTask;
-import lombok.RequiredArgsConstructor;
+import com.vladzuev.schedulingtask.service.scheduledtaskexecutor.ScheduledTaskExecutor;
 import org.quartz.*;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
+import static com.vladzuev.schedulingtask.util.CollectionUtil.collectToMap;
 import static com.vladzuev.schedulingtask.util.JobDetailUtil.putTask;
 import static java.util.Date.from;
 import static org.quartz.JobBuilder.newJob;
@@ -16,11 +19,16 @@ import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import static org.quartz.TriggerBuilder.newTrigger;
 
 @Service
-@RequiredArgsConstructor
 public final class SchedulingTaskService {
     private final Scheduler scheduler;
+    private final Map<Class<? extends ScheduledTask>, ScheduledTaskExecutor<?>> executorsByTaskTypes;
 
-    public void schedule(final ScheduledTask<?> task) {
+    public SchedulingTaskService(final Scheduler scheduler, final List<ScheduledTaskExecutor<?>> taskExecutors) {
+        this.scheduler = scheduler;
+        this.executorsByTaskTypes = collectToMap(taskExecutors, ScheduledTaskExecutor::getTaskType);
+    }
+
+    public void schedule(final ScheduledTask task) {
         try {
             final JobDetail jobDetail = this.createJobDetail(task);
             final Trigger trigger = createTrigger(task);
@@ -30,11 +38,13 @@ public final class SchedulingTaskService {
         }
     }
 
-    private JobDetail createJobDetail(final ScheduledTask<?> task) {
+    private JobDetail createJobDetail(final ScheduledTask task) {
         final JobDetail detail = newJob(Job.class).build();
         putTask(detail, task);
         return detail;
     }
+
+    private void putTaskExecutor(final ScheduledTask)
 
     private static Trigger createTrigger(final ScheduledTask<?> task) {
         final SchedulingConfiguration configuration = task.getConfiguration();

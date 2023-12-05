@@ -1,6 +1,5 @@
 package com.vladzuev.schedulingtask.service.scheduledtask;
 
-import com.vladzuev.schedulingtask.model.ScheduledTaskParams;
 import com.vladzuev.schedulingtask.model.SchedulingConfiguration;
 
 import static java.lang.System.out;

@@ -1,7 +1,6 @@
 package com.vladzuev.schedulingtask;
 
 import com.vladzuev.schedulingtask.model.ScheduledTaskRunInterval;
-import com.vladzuev.schedulingtask.model.ScheduledTaskParams;
 import com.vladzuev.schedulingtask.model.SchedulingConfiguration;
 import com.vladzuev.schedulingtask.model.User;
 import com.vladzuev.schedulingtask.service.schedulingtask.SchedulingTaskService;
