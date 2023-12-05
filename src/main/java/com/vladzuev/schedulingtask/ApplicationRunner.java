@@ -1,10 +1,10 @@
 package com.vladzuev.schedulingtask;
 
+import com.vladzuev.schedulingtask.crud.dto.User;
+import com.vladzuev.schedulingtask.crud.dto.scheduledtask.PrintingMessageScheduledTask;
 import com.vladzuev.schedulingtask.model.ScheduledTaskRunInterval;
 import com.vladzuev.schedulingtask.model.SchedulingConfiguration;
-import com.vladzuev.schedulingtask.crud.dto.User;
 import com.vladzuev.schedulingtask.service.schedulingtask.SchedulingTaskService;
-import com.vladzuev.schedulingtask.service.scheduledtask.HelloWorldScheduledTask;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -13,7 +13,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.ConfigurableApplicationContext;
 
 import static com.vladzuev.schedulingtask.model.ScheduledTaskRunInterval.JobRunIntervalScale.SECOND;
-import static java.time.Instant.parse;
+import static java.time.Instant.now;
 import static org.springframework.boot.SpringApplication.run;
 
 @SpringBootApplication
@@ -25,16 +25,22 @@ public class ApplicationRunner {
         final ConfigurableApplicationContext context = run(ApplicationRunner.class, args);
 
         context.getBean(SchedulingTaskService.class)
-                .schedule(new HelloWorldScheduledTask(
-                                new SchedulingConfiguration(parse("2023-12-05T14:00:01Z"), new ScheduledTaskRunInterval(5, SECOND)),
-                                new ScheduledTaskParams(new User(255L)){}
+                .schedule(
+                        new PrintingMessageScheduledTask(
+                                255L,
+                                new SchedulingConfiguration(now().plusSeconds(10), new ScheduledTaskRunInterval(5, SECOND)),
+                                new User(256L),
+                                "first-message"
                         )
                 );
 
         context.getBean(SchedulingTaskService.class)
-                .schedule(new HelloWorldScheduledTask(
-                        new SchedulingConfiguration(parse("2023-12-05T14:00:01Z"), new ScheduledTaskRunInterval(5, SECOND)),
-                        new ScheduledTaskParams(new User(256L)){}
+                .schedule(
+                        new PrintingMessageScheduledTask(
+                                257L,
+                                new SchedulingConfiguration(now().plusSeconds(10), new ScheduledTaskRunInterval(5, SECOND)),
+                                new User(258L),
+                                "second-message"
                         )
                 );
 
