@@ -1,6 +1,6 @@
 package com.vladzuev.schedulingtask.service.scheduledtaskexecutor;
 
-import com.vladzuev.schedulingtask.service.scheduledtask.ScheduledTask;
+import com.vladzuev.schedulingtask.crud.dto.ScheduledTask;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
