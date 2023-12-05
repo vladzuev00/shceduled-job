@@ -15,6 +15,6 @@ public final class Job implements org.quartz.Job {
         final JobDetail detail = context.getJobDetail();
         final ScheduledTask task = findTask(detail);
         final ScheduledTaskExecutor<?> executor = findTaskExecutor(detail);
-
+        executor.execute(task);
     }
 }
