@@ -1,6 +1,6 @@
-package com.vladzuev.job.quartz.service;
+package com.vladzuev.job.service;
 
-import com.vladzuev.job.crud.dto.User;
+import com.vladzuev.job.model.User;
 import org.quartz.JobDetail;
 import org.springframework.stereotype.Service;
 

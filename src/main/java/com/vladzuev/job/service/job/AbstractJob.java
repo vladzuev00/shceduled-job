@@ -1,7 +1,7 @@
-package com.vladzuev.job.quartz;
+package com.vladzuev.job.service.job;
 
-import com.vladzuev.job.crud.dto.User;
-import com.vladzuev.job.quartz.service.JobAttributeManager;
+import com.vladzuev.job.model.User;
+import com.vladzuev.job.service.JobAttributeManager;
 import lombok.RequiredArgsConstructor;
 import org.quartz.Job;
 import org.quartz.JobDetail;
