@@ -1,4 +1,4 @@
-package com.vladzuev.schedulingtask.service.scheduledtaskexecutor;
+package com.vladzuev.schedulingtask.service.schedulingtask.executor;
 
 import com.vladzuev.schedulingtask.crud.dto.scheduledtask.ScheduledTask;
 import lombok.Getter;
