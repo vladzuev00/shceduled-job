@@ -4,6 +4,8 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.stereotype.Component;
 
+import static java.lang.System.out;
+
 @Component
 public final class JobListener implements org.quartz.JobListener {
     private static final String NAME = "JOB_LISTENER";
@@ -25,6 +27,6 @@ public final class JobListener implements org.quartz.JobListener {
 
     @Override
     public void jobWasExecuted(final JobExecutionContext context, final JobExecutionException exception) {
-        System.out.println("Job history should be inserted");
+        out.println("Job history should be inserted");
     }
 }

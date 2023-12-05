@@ -32,9 +32,9 @@ CREATE TABLE scheduled_task_histories(
     id SERIAL PRIMARY KEY,
     time TIMESTAMP(0) NOT NULL,
     status scheduled_task_history_status NOT NULL,
-    scheduled_task_id INTEGER NOT NULL
+    task_id INTEGER NOT NULL
 );
 
 ALTER TABLE scheduled_task_histories
-    ADD CONSTRAINT fk_scheduled_task_histories_to_scheduled_tasks FOREIGN KEY (job_id) REFERENCES jobs(id)
+    ADD CONSTRAINT fk_scheduled_task_histories_to_scheduled_tasks FOREIGN KEY (task_id) REFERENCES scheduled_tasks(id)
         ON DELETE CASCADE;
