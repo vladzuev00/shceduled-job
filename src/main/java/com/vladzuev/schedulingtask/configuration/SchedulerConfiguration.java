@@ -1,5 +1,6 @@
 package com.vladzuev.schedulingtask.configuration;
 
+import com.vladzuev.schedulingtask.service.schedulingtask.JobListener;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.springframework.context.annotation.Bean;
@@ -12,9 +13,10 @@ import static org.quartz.impl.StdSchedulerFactory.getDefaultScheduler;
 public class SchedulerConfiguration {
 
     @Bean
-    public Scheduler scheduler()
+    public Scheduler scheduler(final JobListener jobListener)
             throws SchedulerException {
         Scheduler scheduler = getDefaultScheduler();
+        scheduler.getListenerManager().addJobListener(jobListener);
         scheduler.start();
         return scheduler;
     }
