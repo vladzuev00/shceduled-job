@@ -1,6 +1,6 @@
 package com.vladzuev.schedulingtask.service.schedulingtask;
 
-import com.vladzuev.schedulingtask.model.ScheduledTaskParams;
+import com.vladzuev.schedulingtask.model.SchedulingConfiguration;
 import com.vladzuev.schedulingtask.service.jobtask.ScheduledTask;
 import lombok.RequiredArgsConstructor;
 import org.quartz.*;
@@ -37,22 +37,22 @@ public final class SchedulingTaskService {
     }
 
     private static Trigger createTrigger(final ScheduledTask<?> task) {
-        final ScheduledTaskParams params = task.getParams();
-        final Date startDateTime = findStartDateTime(params);
-        final ScheduleBuilder<SimpleTrigger> scheduleBuilder = createScheduleBuilder(params);
+        final SchedulingConfiguration configuration = task.getConfiguration();
+        final Date startDateTime = findStartDateTime(configuration);
+        final ScheduleBuilder<SimpleTrigger> scheduleBuilder = createScheduleBuilder(configuration);
         return newTrigger()
                 .startAt(startDateTime)
                 .withSchedule(scheduleBuilder)
                 .build();
     }
 
-    private static Date findStartDateTime(final ScheduledTaskParams params) {
-        final Instant startDateTime = params.getStartDateTime();
+    private static Date findStartDateTime(final SchedulingConfiguration configuration) {
+        final Instant startDateTime = configuration.getStartDateTime();
         return from(startDateTime);
     }
 
-    private static ScheduleBuilder<SimpleTrigger> createScheduleBuilder(final ScheduledTaskParams params) {
-        final int runIntervalInSecond = params.findRunIntervalInSecond();
+    private static ScheduleBuilder<SimpleTrigger> createScheduleBuilder(final SchedulingConfiguration configuration) {
+        final int runIntervalInSecond = configuration.findRunIntervalInSecond();
         return simpleSchedule()
                 .withIntervalInSeconds(runIntervalInSecond)
                 .repeatForever();
