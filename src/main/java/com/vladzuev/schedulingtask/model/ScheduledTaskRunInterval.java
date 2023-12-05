@@ -1,11 +1,11 @@
-package com.vladzuev.job.model;
+package com.vladzuev.schedulingtask.model;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 
 @Value
-public class JobRunInterval {
+public class ScheduledTaskRunInterval {
     int runIntervalValue;
     JobRunIntervalScale runIntervalScale;
 

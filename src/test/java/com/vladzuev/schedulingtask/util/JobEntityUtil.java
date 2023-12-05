@@ -1,6 +1,6 @@
-package com.vladzuev.job.util;
+package com.vladzuev.schedulingtask.util;
 
-import com.vladzuev.job.crud.entity.JobEntity;
+import com.vladzuev.schedulingtask.crud.entity.JobEntity;
 import lombok.experimental.UtilityClass;
 
 import static org.junit.Assert.assertEquals;

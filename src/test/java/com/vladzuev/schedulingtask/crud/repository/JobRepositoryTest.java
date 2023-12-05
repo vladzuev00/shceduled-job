@@ -1,20 +1,20 @@
-package com.vladzuev.job.crud.repository;
+package com.vladzuev.schedulingtask.crud.repository;
 
-import com.vladzuev.job.base.AbstractContextTest;
-import com.vladzuev.job.crud.entity.JobEntity;
-import com.vladzuev.job.crud.entity.UserEntity;
-import com.vladzuev.job.crud.repository.JobRepository;
+import com.vladzuev.schedulingtask.base.AbstractContextTest;
+import com.vladzuev.schedulingtask.crud.entity.JobEntity;
+import com.vladzuev.schedulingtask.crud.entity.UserEntity;
+import com.vladzuev.schedulingtask.crud.repository.JobRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.Optional;
 
-import static com.vladzuev.job.crud.model.JobRunIntervalScale.DAY;
-import static com.vladzuev.job.crud.model.JobRunMode.PERIODIC;
-import static com.vladzuev.job.crud.model.JobStatus.ACTIVE;
-import static com.vladzuev.job.crud.model.JobType.REPORT_SENDER;
-import static com.vladzuev.job.util.JobEntityUtil.checkEquals;
+import static com.vladzuev.schedulingtask.crud.model.JobRunIntervalScale.DAY;
+import static com.vladzuev.schedulingtask.crud.model.JobRunMode.PERIODIC;
+import static com.vladzuev.schedulingtask.crud.model.JobStatus.ACTIVE;
+import static com.vladzuev.schedulingtask.crud.model.JobType.REPORT_SENDER;
+import static com.vladzuev.schedulingtask.util.JobEntityUtil.checkEquals;
 import static java.time.Instant.parse;
 import static org.junit.Assert.assertTrue;
 

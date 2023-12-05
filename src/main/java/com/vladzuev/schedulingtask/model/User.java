@@ -1,4 +1,4 @@
-package com.vladzuev.job.model;
+package com.vladzuev.schedulingtask.model;
 
 import lombok.Value;
 

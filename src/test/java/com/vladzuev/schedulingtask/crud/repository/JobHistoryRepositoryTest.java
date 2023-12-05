@@ -1,16 +1,16 @@
-package com.vladzuev.job.crud.repository;
+package com.vladzuev.schedulingtask.crud.repository;
 
-import com.vladzuev.job.base.AbstractContextTest;
-import com.vladzuev.job.crud.entity.JobEntity;
-import com.vladzuev.job.crud.entity.JobHistoryEntity;
+import com.vladzuev.schedulingtask.base.AbstractContextTest;
+import com.vladzuev.schedulingtask.crud.entity.JobEntity;
+import com.vladzuev.schedulingtask.crud.entity.JobHistoryEntity;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.Optional;
 
-import static com.vladzuev.job.crud.model.JobPerformingStatus.SUCCESS;
-import static com.vladzuev.job.util.JobHistoryEntityUtil.checkEquals;
+import static com.vladzuev.schedulingtask.crud.model.JobPerformingStatus.SUCCESS;
+import static com.vladzuev.schedulingtask.util.JobHistoryEntityUtil.checkEquals;
 import static java.time.Instant.parse;
 import static org.junit.Assert.assertTrue;
 

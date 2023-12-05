@@ -1,4 +1,4 @@
-package com.vladzuev.job.base;
+package com.vladzuev.schedulingtask.base;
 
 import com.yannbriancon.interceptor.HibernateQueryInterceptor;
 import org.junit.BeforeClass;

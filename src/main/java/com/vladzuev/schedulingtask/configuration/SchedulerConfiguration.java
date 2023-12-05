@@ -1,4 +1,4 @@
-package com.vladzuev.job.configuration;
+package com.vladzuev.schedulingtask.configuration;
 
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
@@ -7,12 +7,15 @@ import org.springframework.context.annotation.Configuration;
 
 import static org.quartz.impl.StdSchedulerFactory.getDefaultScheduler;
 
+//TODO: refactor
 @Configuration
 public class SchedulerConfiguration {
 
-    @Bean(initMethod = "startScheduler", destroyMethod = "shutdownScheduler")
+    @Bean
     public Scheduler scheduler()
             throws SchedulerException {
-        return getDefaultScheduler();
+        Scheduler scheduler = getDefaultScheduler();
+        scheduler.start();
+        return scheduler;
     }
 }
