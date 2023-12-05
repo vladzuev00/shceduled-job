@@ -1,7 +1,7 @@
 package com.vladzuev.schedulingtask.service.schedulingtask;
 
 import com.vladzuev.schedulingtask.model.SchedulingConfiguration;
-import com.vladzuev.schedulingtask.service.jobtask.ScheduledTask;
+import com.vladzuev.schedulingtask.service.scheduledtask.ScheduledTask;
 import lombok.RequiredArgsConstructor;
 import org.quartz.*;
 import org.springframework.stereotype.Service;

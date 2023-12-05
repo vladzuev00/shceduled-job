@@ -1,6 +1,6 @@
 package com.vladzuev.schedulingtask.service.schedulingtask;
 
-import com.vladzuev.schedulingtask.service.jobtask.ScheduledTask;
+import com.vladzuev.schedulingtask.service.scheduledtask.ScheduledTask;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
 
