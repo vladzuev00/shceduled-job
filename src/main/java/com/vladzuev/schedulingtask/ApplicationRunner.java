@@ -3,7 +3,6 @@ package com.vladzuev.schedulingtask;
 import com.vladzuev.schedulingtask.crud.dto.User;
 import com.vladzuev.schedulingtask.crud.dto.scheduledtask.PrintingMessageScheduledTask;
 import com.vladzuev.schedulingtask.model.ScheduledTaskRunInterval;
-import com.vladzuev.schedulingtask.model.SchedulingConfiguration;
 import com.vladzuev.schedulingtask.service.schedulingtask.SchedulingTaskService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
