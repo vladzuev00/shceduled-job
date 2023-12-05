@@ -1,4 +1,4 @@
-package com.vladzuev.schedulingtask.service;
+package com.vladzuev.schedulingtask.service.schedulingtask;
 
 import com.vladzuev.schedulingtask.model.ScheduledTaskParams;
 import com.vladzuev.schedulingtask.service.jobtask.ScheduledTask;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.Date;
 
+import static com.vladzuev.schedulingtask.util.JobDetailUtil.putTask;
 import static java.util.Date.from;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
@@ -17,8 +18,6 @@ import static org.quartz.TriggerBuilder.newTrigger;
 @Service
 @RequiredArgsConstructor
 public final class SchedulingTaskService {
-    private static final String ATTRIBUTE_NAME_TASK = "task";
-
     private final Scheduler scheduler;
 
     public void schedule(final ScheduledTask<?> task) {
@@ -57,24 +56,6 @@ public final class SchedulingTaskService {
         return simpleSchedule()
                 .withIntervalInSeconds(runIntervalInSecond)
                 .repeatForever();
-    }
-
-    private static void putTask(final JobDetail detail, final ScheduledTask<?> task) {
-        detail.getJobDataMap().put(ATTRIBUTE_NAME_TASK, task);
-    }
-
-    private static final class Job implements org.quartz.Job {
-
-        @Override
-        public void execute(final JobExecutionContext context) {
-            final JobDetail detail = context.getJobDetail();
-            final ScheduledTask<?> task = findTask(detail);
-            task.execute();
-        }
-
-        private static ScheduledTask<?> findTask(final JobDetail detail) {
-            return (ScheduledTask<?>) detail.getJobDataMap().get(ATTRIBUTE_NAME_TASK);
-        }
     }
 
     private static final class SchedulingTaskException extends RuntimeException {
