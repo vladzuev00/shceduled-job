@@ -18,6 +18,7 @@ public class SchedulerConfiguration {
         Scheduler scheduler = getDefaultScheduler();
         scheduler.getListenerManager().addJobListener(jobListener);
         scheduler.start();
+        //TODO: call shutdown
         return scheduler;
     }
 }
