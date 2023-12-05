@@ -13,6 +13,7 @@ import java.util.Map;
 
 import static com.vladzuev.schedulingtask.util.CollectionUtil.collectToMap;
 import static com.vladzuev.schedulingtask.util.JobDetailUtil.putTask;
+import static com.vladzuev.schedulingtask.util.JobDetailUtil.putTaskExecutor;
 import static java.util.Date.from;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
@@ -23,16 +24,16 @@ public final class SchedulingTaskService {
     private final Scheduler scheduler;
     private final Map<Class<? extends ScheduledTask>, ScheduledTaskExecutor<?>> executorsByTaskTypes;
 
-    public SchedulingTaskService(final Scheduler scheduler, final List<ScheduledTaskExecutor<?>> taskExecutors) {
+    public SchedulingTaskService(final Scheduler scheduler, final List<ScheduledTaskExecutor<?>> executors) {
         this.scheduler = scheduler;
-        this.executorsByTaskTypes = collectToMap(taskExecutors, ScheduledTaskExecutor::getTaskType);
+        this.executorsByTaskTypes = collectToMap(executors, ScheduledTaskExecutor::getTaskType);
     }
 
     public void schedule(final ScheduledTask task) {
         try {
-            final JobDetail jobDetail = this.createJobDetail(task);
+            final JobDetail detail = this.createJobDetail(task);
             final Trigger trigger = createTrigger(task);
-            this.scheduler.scheduleJob(jobDetail, trigger);
+            this.scheduler.scheduleJob(detail, trigger);
         } catch (final SchedulerException cause) {
             throw new SchedulingTaskException(cause);
         }
@@ -41,12 +42,25 @@ public final class SchedulingTaskService {
     private JobDetail createJobDetail(final ScheduledTask task) {
         final JobDetail detail = newJob(Job.class).build();
         putTask(detail, task);
+        this.putExecutor(detail, task);
         return detail;
     }
 
-    private void putTaskExecutor(final ScheduledTask)
+    private void putExecutor(final JobDetail detail, final ScheduledTask task) {
+        final ScheduledTaskExecutor<?> executor = this.findExecutor(task);
+        putTaskExecutor(detail, executor);
+    }
 
-    private static Trigger createTrigger(final ScheduledTask<?> task) {
+    private ScheduledTaskExecutor<?> findExecutor(final ScheduledTask task) {
+        final Class<? extends ScheduledTask> taskType = task.getClass();
+        final ScheduledTaskExecutor<?> executor = this.executorsByTaskTypes.get(taskType);
+        if (executor == null) {
+            throw new SchedulingTaskException("There is no executor for task: %s".formatted(task));
+        }
+        return executor;
+    }
+
+    private static Trigger createTrigger(final ScheduledTask task) {
         final SchedulingConfiguration configuration = task.getConfiguration();
         final Date startDateTime = findStartDateTime(configuration);
         final ScheduleBuilder<SimpleTrigger> scheduleBuilder = createScheduleBuilder(configuration);
