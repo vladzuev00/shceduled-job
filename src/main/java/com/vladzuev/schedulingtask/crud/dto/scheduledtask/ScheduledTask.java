@@ -1,8 +1,8 @@
-package com.vladzuev.schedulingtask.crud.dto;
+package com.vladzuev.schedulingtask.crud.dto.scheduledtask;
 
 import by.nhorushko.crudgeneric.v2.domain.AbstractDto;
+import com.vladzuev.schedulingtask.crud.dto.User;
 import com.vladzuev.schedulingtask.model.SchedulingConfiguration;
-import com.vladzuev.schedulingtask.model.User;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

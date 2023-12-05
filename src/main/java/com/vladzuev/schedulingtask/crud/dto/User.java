@@ -1,4 +1,4 @@
-package com.vladzuev.schedulingtask.model;
+package com.vladzuev.schedulingtask.crud.dto;
 
 import lombok.Value;
 

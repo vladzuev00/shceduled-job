@@ -1,7 +1,7 @@
 package com.vladzuev.schedulingtask.service.schedulingtask;
 
 import com.vladzuev.schedulingtask.model.SchedulingConfiguration;
-import com.vladzuev.schedulingtask.crud.dto.ScheduledTask;
+import com.vladzuev.schedulingtask.crud.dto.scheduledtask.ScheduledTask;
 import com.vladzuev.schedulingtask.service.scheduledtaskexecutor.ScheduledTaskExecutor;
 import org.quartz.*;
 import org.springframework.stereotype.Service;

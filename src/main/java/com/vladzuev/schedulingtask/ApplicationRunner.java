@@ -2,7 +2,7 @@ package com.vladzuev.schedulingtask;
 
 import com.vladzuev.schedulingtask.model.ScheduledTaskRunInterval;
 import com.vladzuev.schedulingtask.model.SchedulingConfiguration;
-import com.vladzuev.schedulingtask.model.User;
+import com.vladzuev.schedulingtask.crud.dto.User;
 import com.vladzuev.schedulingtask.service.schedulingtask.SchedulingTaskService;
 import com.vladzuev.schedulingtask.service.scheduledtask.HelloWorldScheduledTask;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
