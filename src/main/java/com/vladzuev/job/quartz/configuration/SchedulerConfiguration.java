@@ -1,5 +1,7 @@
 package com.vladzuev.job.quartz.configuration;
 
+import org.quartz.Job;
+import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.springframework.context.annotation.Bean;
