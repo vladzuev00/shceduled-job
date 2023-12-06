@@ -1,14 +1,14 @@
 package com.vladzuev.schedulingtask.service.schedulingtask.executor;
 
 import com.vladzuev.schedulingtask.crud.dto.scheduledtask.ForeverPrintingMessageScheduledTask;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import static java.lang.System.out;
 
-@Service
-public final class PrintingMessageScheduledTaskExecutor extends ScheduledTaskExecutor<ForeverPrintingMessageScheduledTask> {
+@Component
+public final class ForeverPrintingMessageScheduledTaskExecutor extends ScheduledTaskExecutor<ForeverPrintingMessageScheduledTask> {
 
-    public PrintingMessageScheduledTaskExecutor() {
+    public ForeverPrintingMessageScheduledTaskExecutor() {
         super(ForeverPrintingMessageScheduledTask.class);
     }
 
