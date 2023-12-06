@@ -12,13 +12,13 @@ import java.time.Instant;
 @Getter
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public abstract class RepeatedScheduledTask extends ScheduledTask {
+public abstract class ForeverRepeatedScheduledTask extends ScheduledTask {
     private final ScheduledTaskRunInterval runInterval;
 
-    public RepeatedScheduledTask(final Long id,
-                                 final Instant startDateTime,
-                                 final User user,
-                                 final ScheduledTaskRunInterval runInterval) {
+    public ForeverRepeatedScheduledTask(final Long id,
+                                        final Instant startDateTime,
+                                        final User user,
+                                        final ScheduledTaskRunInterval runInterval) {
         super(id, startDateTime, user);
         this.runInterval = runInterval;
     }

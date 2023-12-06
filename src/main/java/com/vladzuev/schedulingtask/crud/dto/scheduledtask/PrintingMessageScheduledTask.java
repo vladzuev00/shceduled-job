@@ -11,7 +11,7 @@ import java.time.Instant;
 @Getter
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public final class PrintingMessageScheduledTask extends RepeatedScheduledTask {
+public final class PrintingMessageScheduledTask extends ForeverRepeatedScheduledTask {
     private final String message;
 
     public PrintingMessageScheduledTask(final Long id,
