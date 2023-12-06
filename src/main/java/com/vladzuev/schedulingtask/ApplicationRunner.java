@@ -2,6 +2,7 @@ package com.vladzuev.schedulingtask;
 
 import com.vladzuev.schedulingtask.crud.dto.User;
 import com.vladzuev.schedulingtask.crud.dto.scheduledtask.ForeverPrintingMessageScheduledTask;
+import com.vladzuev.schedulingtask.crud.dto.scheduledtask.OncePrintingMessageScheduledTask;
 import com.vladzuev.schedulingtask.model.ScheduledTaskRunInterval;
 import com.vladzuev.schedulingtask.service.schedulingtask.SchedulingTaskService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -27,17 +28,18 @@ public class ApplicationRunner {
                 .schedule(
                         new ForeverPrintingMessageScheduledTask(
                                 255L,
-                                new SchedulingConfiguration(now().plusSeconds(10), new ScheduledTaskRunInterval(5, SECOND)),
+                                now().plusSeconds(10),
                                 new User(256L),
-                                "first-message"
+                                new ScheduledTaskRunInterval(5, SECOND),
+                                "forever-message"
                         )
                 );
 
         context.getBean(SchedulingTaskService.class)
                 .schedule(
-                        new ForeverPrintingMessageScheduledTask(
+                        new OncePrintingMessageScheduledTask(
                                 257L,
-                                new SchedulingConfiguration(now().plusSeconds(10), new ScheduledTaskRunInterval(5, SECOND)),
+                                now().plusSeconds(5),
                                 new User(258L),
                                 "second-message"
                         )

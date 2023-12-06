@@ -1,9 +1,12 @@
 package com.vladzuev.schedulingtask.service.schedulingtask;
 
+import com.vladzuev.schedulingtask.crud.dto.scheduledtask.ScheduledTask;
+import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.stereotype.Component;
 
+import static com.vladzuev.schedulingtask.util.JobDetailUtil.findTask;
 import static java.lang.System.out;
 
 @Component
@@ -27,6 +30,8 @@ public final class JobListener implements org.quartz.JobListener {
 
     @Override
     public void jobWasExecuted(final JobExecutionContext context, final JobExecutionException exception) {
-        out.println("Job history should be inserted");
+        final JobDetail jobDetail = context.getJobDetail();
+        final ScheduledTask task = findTask(jobDetail);
+        out.printf("Job history should be inserted for task '%s'\n", task);
     }
 }
