@@ -32,6 +32,10 @@ public final class JobListener implements org.quartz.JobListener {
     public void jobWasExecuted(final JobExecutionContext context, final JobExecutionException exception) {
         final JobDetail jobDetail = context.getJobDetail();
         final ScheduledTask task = findTask(jobDetail);
-        out.printf("Job history should be inserted for task '%s'\n", task);
+        if (exception != null) {
+            out.printf("Job history should be inserted for success task '%s'\n", task);
+        } else {
+            out.printf("Job history should be inserted for failed task '%s'\n", task);
+        }
     }
 }

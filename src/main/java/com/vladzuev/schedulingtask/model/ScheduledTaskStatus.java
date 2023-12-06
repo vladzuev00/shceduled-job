@@ -1,2 +1,4 @@
-package com.vladzuev.schedulingtask.model;public class ScheduledTaskStatus {
+package com.vladzuev.schedulingtask.model;
+
+public class ScheduledTaskStatus {
 }
