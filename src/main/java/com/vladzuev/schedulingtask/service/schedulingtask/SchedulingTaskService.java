@@ -59,22 +59,12 @@ public final class SchedulingTaskService {
         return executor;
     }
 
-    private static Trigger createTrigger(final ScheduledTask task) {
-        final SchedulingConfiguration configuration = task.getConfiguration();
-        final Date startDateTime = findStartDateTime(configuration);
-        final ScheduleBuilder<SimpleTrigger> scheduleBuilder = createScheduleBuilder(configuration);
-        return newTrigger()
-                .startAt(startDateTime)
-                .withSchedule(scheduleBuilder)
-                .build();
-    }
-
-    private static Date findStartDateTime(final SchedulingConfiguration configuration) {
+    private static Date findStartDateTime(final ScheduledTask configuration) {
         final Instant startDateTime = configuration.getStartDateTime();
         return from(startDateTime);
     }
 
-    private static ScheduleBuilder<SimpleTrigger> createScheduleBuilder(final SchedulingConfiguration configuration) {
+    private static ScheduleBuilder<?> createScheduleBuilder(final SchedulingConfiguration configuration) {
         final int runIntervalInSecond = configuration.findRunIntervalInSecond();
         return simpleSchedule()
                 .withIntervalInSeconds(runIntervalInSecond)
