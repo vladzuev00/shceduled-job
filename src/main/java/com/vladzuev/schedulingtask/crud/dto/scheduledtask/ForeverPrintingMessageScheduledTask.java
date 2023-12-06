@@ -11,14 +11,14 @@ import java.time.Instant;
 @Getter
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public final class PrintingMessageScheduledTask extends ForeverRepeatedScheduledTask {
+public final class ForeverPrintingMessageScheduledTask extends ForeverRepeatedScheduledTask {
     private final String message;
 
-    public PrintingMessageScheduledTask(final Long id,
-                                        final Instant startDateTime,
-                                        final User user,
-                                        final ScheduledTaskRunInterval runInterval,
-                                        final String message) {
+    public ForeverPrintingMessageScheduledTask(final Long id,
+                                               final Instant startDateTime,
+                                               final User user,
+                                               final ScheduledTaskRunInterval runInterval,
+                                               final String message) {
         super(id, startDateTime, user, runInterval);
         this.message = message;
     }
