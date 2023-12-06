@@ -1,6 +1,5 @@
 package com.vladzuev.schedulingtask.model.task.oncerepeated;
 
-import com.vladzuev.schedulingtask.crud.dto.User;
 import com.vladzuev.schedulingtask.model.task.ScheduledTask;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -14,8 +13,8 @@ import java.time.Instant;
 @ToString(callSuper = true)
 public abstract class OnceRepeatedScheduledTask extends ScheduledTask {
 
-    public OnceRepeatedScheduledTask(final Long id, final Instant startDateTime, final User user) {
-        super(id, startDateTime, user);
+    public OnceRepeatedScheduledTask(final Instant startDateTime) {
+        super(startDateTime);
     }
 
     @Override
