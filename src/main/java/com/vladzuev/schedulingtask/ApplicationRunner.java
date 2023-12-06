@@ -1,8 +1,8 @@
 package com.vladzuev.schedulingtask;
 
 import com.vladzuev.schedulingtask.crud.dto.User;
-import com.vladzuev.schedulingtask.model.task.ForeverPrintingMessageScheduledTask;
-import com.vladzuev.schedulingtask.model.task.OncePrintingMessageScheduledTask;
+import com.vladzuev.schedulingtask.model.task.foreverrepeated.ForeverPrintingMessageScheduledTask;
+import com.vladzuev.schedulingtask.model.task.oncerepeated.OncePrintingMessageScheduledTask;
 import com.vladzuev.schedulingtask.model.ScheduledTaskRunInterval;
 import com.vladzuev.schedulingtask.service.schedulingtask.SchedulingTaskService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

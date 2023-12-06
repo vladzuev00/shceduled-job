@@ -1,7 +1,5 @@
 package com.vladzuev.schedulingtask.model.task;
 
-import by.nhorushko.crudgeneric.v2.domain.AbstractDto;
-import com.vladzuev.schedulingtask.crud.dto.User;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -20,10 +18,8 @@ import static org.quartz.TriggerBuilder.newTrigger;
 @Getter
 @EqualsAndHashCode
 @ToString
-public abstract class ScheduledTask implements AbstractDto<Long> {
-    private final Long id;
+public abstract class ScheduledTask {
     private final Instant startDateTime;
-    private final User user;
 
     public final Trigger createTrigger() {
         final Date startDateTime = from(this.startDateTime);

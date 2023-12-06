@@ -1,6 +1,6 @@
 package com.vladzuev.schedulingtask.service.schedulingtask.executor;
 
-import com.vladzuev.schedulingtask.model.task.ForeverPrintingMessageScheduledTask;
+import com.vladzuev.schedulingtask.model.task.foreverrepeated.ForeverPrintingMessageScheduledTask;
 import org.springframework.stereotype.Component;
 
 import static java.lang.System.out;

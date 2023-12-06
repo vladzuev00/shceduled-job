@@ -1,6 +1,6 @@
 package com.vladzuev.schedulingtask.service.schedulingtask.executor;
 
-import com.vladzuev.schedulingtask.model.task.OncePrintingMessageScheduledTask;
+import com.vladzuev.schedulingtask.model.task.oncerepeated.OncePrintingMessageScheduledTask;
 import org.springframework.stereotype.Component;
 
 import static java.lang.System.out;

@@ -1,4 +1,4 @@
-package com.vladzuev.schedulingtask.model.task;
+package com.vladzuev.schedulingtask.model.task.oncerepeated;
 
 import com.vladzuev.schedulingtask.crud.dto.User;
 import lombok.Getter;

@@ -1,6 +1,7 @@
-package com.vladzuev.schedulingtask.model.task;
+package com.vladzuev.schedulingtask.model.task.oncerepeated;
 
 import com.vladzuev.schedulingtask.crud.dto.User;
+import com.vladzuev.schedulingtask.model.task.ScheduledTask;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
