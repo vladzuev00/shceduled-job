@@ -1,6 +1,5 @@
 package com.vladzuev.schedulingtask.model.task.oncerepeated;
 
-import com.vladzuev.schedulingtask.crud.dto.User;
 import lombok.Getter;
 
 import java.time.Instant;
@@ -9,11 +8,8 @@ import java.time.Instant;
 public final class OncePrintingMessageScheduledTask extends OnceRepeatedScheduledTask {
     private final String message;
 
-    public OncePrintingMessageScheduledTask(final Long id,
-                                            final Instant startDateTime,
-                                            final User user,
-                                            final String message) {
-        super(id, startDateTime, user);
+    public OncePrintingMessageScheduledTask(final Instant startDateTime, final String message) {
+        super(startDateTime);
         this.message = message;
     }
 
