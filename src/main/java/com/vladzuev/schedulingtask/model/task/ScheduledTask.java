@@ -1,4 +1,4 @@
-package com.vladzuev.schedulingtask.crud.dto.scheduledtask;
+package com.vladzuev.schedulingtask.model.task;
 
 import by.nhorushko.crudgeneric.v2.domain.AbstractDto;
 import com.vladzuev.schedulingtask.crud.dto.User;

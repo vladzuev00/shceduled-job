@@ -1,4 +1,4 @@
-package com.vladzuev.schedulingtask.crud.dto.scheduledtask;
+package com.vladzuev.schedulingtask.model.task;
 
 import com.vladzuev.schedulingtask.crud.dto.User;
 import com.vladzuev.schedulingtask.model.ScheduledTaskRunInterval;

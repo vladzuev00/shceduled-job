@@ -1,6 +1,6 @@
 package com.vladzuev.schedulingtask.util;
 
-import com.vladzuev.schedulingtask.crud.dto.scheduledtask.ScheduledTask;
+import com.vladzuev.schedulingtask.model.task.ScheduledTask;
 import com.vladzuev.schedulingtask.service.schedulingtask.executor.ScheduledTaskExecutor;
 import lombok.experimental.UtilityClass;
 import org.quartz.JobDetail;

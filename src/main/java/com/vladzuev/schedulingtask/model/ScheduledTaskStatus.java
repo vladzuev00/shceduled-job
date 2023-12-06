@@ -1,4 +1,5 @@
 package com.vladzuev.schedulingtask.model;
 
-public class ScheduledTaskStatus {
+public enum ScheduledTaskStatus {
+    SUCCESS, FAILED
 }

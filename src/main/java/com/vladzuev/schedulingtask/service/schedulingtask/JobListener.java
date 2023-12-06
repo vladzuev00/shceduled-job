@@ -1,6 +1,6 @@
 package com.vladzuev.schedulingtask.service.schedulingtask;
 
-import com.vladzuev.schedulingtask.crud.dto.scheduledtask.ScheduledTask;
+import com.vladzuev.schedulingtask.model.task.ScheduledTask;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -11,7 +11,7 @@ import static java.lang.System.out;
 
 @Component
 public final class JobListener implements org.quartz.JobListener {
-    private static final String NAME = "JOB_LISTENER";
+    private static final String NAME = "MAIN_JOB_LISTER";
 
     @Override
     public String getName() {
