@@ -5,7 +5,6 @@ import com.vladzuev.schedulingtask.model.ScheduledTaskRunInterval;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
-import org.quartz.ScheduleBuilder;
 import org.quartz.SimpleScheduleBuilder;
 
 import java.time.Instant;
@@ -26,6 +25,7 @@ public abstract class RepeatedScheduledTask extends ScheduledTask {
 
     @Override
     protected final void configureScheduleBuilder(final SimpleScheduleBuilder builder) {
-
+        final int runIntervalInSeconds = this.runInterval.findRunIntervalInSecond();
+        builder.withIntervalInSeconds(runIntervalInSeconds).repeatForever();
     }
 }

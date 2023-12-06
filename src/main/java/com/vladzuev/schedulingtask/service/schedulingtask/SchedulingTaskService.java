@@ -2,21 +2,19 @@ package com.vladzuev.schedulingtask.service.schedulingtask;
 
 import com.vladzuev.schedulingtask.crud.dto.scheduledtask.ScheduledTask;
 import com.vladzuev.schedulingtask.service.schedulingtask.executor.ScheduledTaskExecutor;
-import org.quartz.*;
+import org.quartz.JobDetail;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.Trigger;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import static com.vladzuev.schedulingtask.util.CollectionUtil.collectToMap;
 import static com.vladzuev.schedulingtask.util.JobDetailUtil.putTask;
 import static com.vladzuev.schedulingtask.util.JobDetailUtil.putTaskExecutor;
-import static java.util.Date.from;
 import static org.quartz.JobBuilder.newJob;
-import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
-import static org.quartz.TriggerBuilder.newTrigger;
 
 @Service
 public final class SchedulingTaskService {
@@ -31,7 +29,7 @@ public final class SchedulingTaskService {
     public void schedule(final ScheduledTask task) {
         try {
             final JobDetail detail = this.createJobDetail(task);
-            final Trigger trigger = createTrigger(task);
+            final Trigger trigger = task.createTrigger();
             this.scheduler.scheduleJob(detail, trigger);
         } catch (final SchedulerException cause) {
             throw new SchedulingTaskException(cause);
@@ -57,18 +55,6 @@ public final class SchedulingTaskService {
             throw new SchedulingTaskException("There is no executor for task: %s".formatted(task));
         }
         return executor;
-    }
-
-    private static Date findStartDateTime(final ScheduledTask configuration) {
-        final Instant startDateTime = configuration.getStartDateTime();
-        return from(startDateTime);
-    }
-
-    private static ScheduleBuilder<?> createScheduleBuilder(final SchedulingConfiguration configuration) {
-        final int runIntervalInSecond = configuration.findRunIntervalInSecond();
-        return simpleSchedule()
-                .withIntervalInSeconds(runIntervalInSecond)
-                .repeatForever();
     }
 
     private static final class SchedulingTaskException extends RuntimeException {
