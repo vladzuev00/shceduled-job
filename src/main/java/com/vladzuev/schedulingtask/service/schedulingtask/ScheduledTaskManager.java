@@ -1,11 +1,9 @@
 package com.vladzuev.schedulingtask.service.schedulingtask;
 
+import com.vladzuev.schedulingtask.model.Job;
 import com.vladzuev.schedulingtask.model.task.ScheduledTask;
 import com.vladzuev.schedulingtask.service.schedulingtask.executor.ScheduledTaskExecutor;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.Trigger;
+import org.quartz.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,11 +15,11 @@ import static com.vladzuev.schedulingtask.util.JobDetailUtil.putTaskExecutor;
 import static org.quartz.JobBuilder.newJob;
 
 @Service
-public final class SchedulingTaskService {
+public final class ScheduledTaskManager {
     private final Scheduler scheduler;
     private final Map<Class<? extends ScheduledTask>, ScheduledTaskExecutor<?>> executorsByTaskTypes;
 
-    public SchedulingTaskService(final Scheduler scheduler, final List<ScheduledTaskExecutor<?>> executors) {
+    public ScheduledTaskManager(final Scheduler scheduler, final List<ScheduledTaskExecutor<?>> executors) {
         this.scheduler = scheduler;
         this.executorsByTaskTypes = collectToMap(executors, ScheduledTaskExecutor::getTaskType);
     }
@@ -32,12 +30,24 @@ public final class SchedulingTaskService {
             final Trigger trigger = task.createTrigger();
             this.scheduler.scheduleJob(detail, trigger);
         } catch (final SchedulerException cause) {
-            throw new SchedulingTaskException(cause);
+            throw new ScheduledTaskManagingException(cause);
         }
     }
 
+    public void pause(final ScheduledTask task) {
+        try {
+            final JobKey jobKey = createJobKey(task);
+            this.scheduler.pauseJob(jobKey);
+        } catch (final SchedulerException cause) {
+            throw new ScheduledTaskManagingException(cause);
+        }
+    }
+
+
+
     private JobDetail createJobDetail(final ScheduledTask task) {
-        final JobDetail detail = newJob(Job.class).build();
+        final JobKey jobKey = createJobKey(task);
+        final JobDetail detail = newJob(Job.class).withIdentity(jobKey).build();
         putTask(detail, task);
         this.putExecutor(detail, task);
         return detail;
@@ -52,29 +62,35 @@ public final class SchedulingTaskService {
         final Class<? extends ScheduledTask> taskType = task.getClass();
         final ScheduledTaskExecutor<?> executor = this.executorsByTaskTypes.get(taskType);
         if (executor == null) {
-            throw new SchedulingTaskException("There is no executor for task: %s".formatted(task));
+            throw new ScheduledTaskManagingException("There is no executor for task: %s".formatted(task));
         }
         return executor;
     }
 
-    private static final class SchedulingTaskException extends RuntimeException {
+    private static JobKey createJobKey(final ScheduledTask task) {
+        final Long id = task.getId();
+        final String idAsString = id.toString();
+        return new JobKey(idAsString);
+    }
+
+    private static final class ScheduledTaskManagingException extends RuntimeException {
 
         @SuppressWarnings("unused")
-        public SchedulingTaskException() {
+        public ScheduledTaskManagingException() {
 
         }
 
         @SuppressWarnings("unused")
-        public SchedulingTaskException(final String description) {
+        public ScheduledTaskManagingException(final String description) {
             super(description);
         }
 
-        public SchedulingTaskException(final Exception cause) {
+        public ScheduledTaskManagingException(final Exception cause) {
             super(cause);
         }
 
         @SuppressWarnings("unused")
-        public SchedulingTaskException(final String description, final Exception cause) {
+        public ScheduledTaskManagingException(final String description, final Exception cause) {
             super(description, cause);
         }
     }

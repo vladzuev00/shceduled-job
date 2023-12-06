@@ -15,8 +15,10 @@ import java.time.Instant;
 public abstract class ForeverRepeatedScheduledTask extends ScheduledTask {
     private final ScheduledTaskRunInterval runInterval;
 
-    public ForeverRepeatedScheduledTask(final Instant startDateTime, final ScheduledTaskRunInterval runInterval) {
-        super(startDateTime);
+    public ForeverRepeatedScheduledTask(final Long id,
+                                        final Instant startDateTime,
+                                        final ScheduledTaskRunInterval runInterval) {
+        super(id, startDateTime);
         this.runInterval = runInterval;
     }
 

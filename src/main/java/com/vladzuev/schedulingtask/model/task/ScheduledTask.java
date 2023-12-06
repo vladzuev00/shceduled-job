@@ -19,6 +19,7 @@ import static org.quartz.TriggerBuilder.newTrigger;
 @EqualsAndHashCode
 @ToString
 public abstract class ScheduledTask {
+    private final Long id;
     private final Instant startDateTime;
 
     public final Trigger createTrigger() {

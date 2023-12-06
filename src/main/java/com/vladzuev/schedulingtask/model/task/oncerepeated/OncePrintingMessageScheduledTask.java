@@ -8,8 +8,8 @@ import java.time.Instant;
 public final class OncePrintingMessageScheduledTask extends OnceRepeatedScheduledTask {
     private final String message;
 
-    public OncePrintingMessageScheduledTask(final Instant startDateTime, final String message) {
-        super(startDateTime);
+    public OncePrintingMessageScheduledTask(final Long id, final Instant startDateTime, final String message) {
+        super(id, startDateTime);
         this.message = message;
     }
 

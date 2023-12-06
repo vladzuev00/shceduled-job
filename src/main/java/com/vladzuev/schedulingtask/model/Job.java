@@ -1,4 +1,4 @@
-package com.vladzuev.schedulingtask.service.schedulingtask;
+package com.vladzuev.schedulingtask.model;
 
 import com.vladzuev.schedulingtask.model.task.ScheduledTask;
 import com.vladzuev.schedulingtask.service.schedulingtask.executor.ScheduledTaskExecutor;

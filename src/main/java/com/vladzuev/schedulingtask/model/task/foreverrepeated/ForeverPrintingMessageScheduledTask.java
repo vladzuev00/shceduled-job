@@ -13,10 +13,11 @@ import java.time.Instant;
 public final class ForeverPrintingMessageScheduledTask extends ForeverRepeatedScheduledTask {
     private final String message;
 
-    public ForeverPrintingMessageScheduledTask(final Instant startDateTime,
+    public ForeverPrintingMessageScheduledTask(final Long id,
+                                               final Instant startDateTime,
                                                final ScheduledTaskRunInterval runInterval,
                                                final String message) {
-        super(startDateTime, runInterval);
+        super(id, startDateTime, runInterval);
         this.message = message;
     }
 

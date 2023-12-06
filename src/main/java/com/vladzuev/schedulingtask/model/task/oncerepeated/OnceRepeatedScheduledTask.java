@@ -13,8 +13,8 @@ import java.time.Instant;
 @ToString(callSuper = true)
 public abstract class OnceRepeatedScheduledTask extends ScheduledTask {
 
-    public OnceRepeatedScheduledTask(final Instant startDateTime) {
-        super(startDateTime);
+    public OnceRepeatedScheduledTask(final Long id, final Instant startDateTime) {
+        super(id, startDateTime);
     }
 
     @Override
