@@ -1,6 +1,5 @@
 package com.vladzuev.schedulingtask.model.task.foreverrepeated;
 
-import com.vladzuev.schedulingtask.crud.dto.User;
 import com.vladzuev.schedulingtask.model.ScheduledTaskRunInterval;
 import com.vladzuev.schedulingtask.model.task.ScheduledTask;
 import lombok.EqualsAndHashCode;
@@ -16,11 +15,8 @@ import java.time.Instant;
 public abstract class ForeverRepeatedScheduledTask extends ScheduledTask {
     private final ScheduledTaskRunInterval runInterval;
 
-    public ForeverRepeatedScheduledTask(final Long id,
-                                        final Instant startDateTime,
-                                        final User user,
-                                        final ScheduledTaskRunInterval runInterval) {
-        super(id, startDateTime, user);
+    public ForeverRepeatedScheduledTask(final Instant startDateTime, final ScheduledTaskRunInterval runInterval) {
+        super(startDateTime);
         this.runInterval = runInterval;
     }
 
