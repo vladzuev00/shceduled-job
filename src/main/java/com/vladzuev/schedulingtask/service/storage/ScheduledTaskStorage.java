@@ -13,6 +13,4 @@ public interface ScheduledTaskStorage {
     void delete(final ScheduledTask task);
 
     Iterable<ScheduledTask> findAllActive();
-
-    Optional<ScheduledTask> findById(final Long id);
 }
