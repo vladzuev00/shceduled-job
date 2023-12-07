@@ -1,4 +1,4 @@
-package com.vladzuev.schedulingtask.service.schedulingtask;
+package com.vladzuev.schedulingtask.service.listener;
 
 import com.vladzuev.schedulingtask.model.task.ScheduledTask;
 import org.quartz.JobDetail;

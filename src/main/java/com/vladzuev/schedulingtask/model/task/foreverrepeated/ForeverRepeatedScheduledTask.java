@@ -1,7 +1,7 @@
 package com.vladzuev.schedulingtask.model.task.foreverrepeated;
 
-import com.vladzuev.schedulingtask.model.ScheduledTaskRunInterval;
 import com.vladzuev.schedulingtask.model.task.ScheduledTask;
+import com.vladzuev.schedulingtask.model.ScheduledTaskRunInterval;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
