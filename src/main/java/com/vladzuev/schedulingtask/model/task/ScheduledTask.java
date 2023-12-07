@@ -24,7 +24,7 @@ import static org.quartz.TriggerBuilder.newTrigger;
 @EqualsAndHashCode
 @ToString
 public abstract class ScheduledTask {
-    private final Long id;
+    private final long id;
     private final Instant startDateTime;
 
     public final Trigger createTrigger() {
@@ -37,7 +37,7 @@ public abstract class ScheduledTask {
     }
 
     public final JobKey createJobKey() {
-        final String idAsString = this.id.toString();
+        final String idAsString = Long.toString(this.id);
         return new JobKey(idAsString);
     }
 

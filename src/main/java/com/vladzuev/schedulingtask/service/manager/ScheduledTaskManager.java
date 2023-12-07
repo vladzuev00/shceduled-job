@@ -1,49 +1,31 @@
 package com.vladzuev.schedulingtask.service.manager;
 
 import com.vladzuev.schedulingtask.model.task.ScheduledTask;
-import com.vladzuev.schedulingtask.service.storage.ScheduledTaskStorage;
 import lombok.RequiredArgsConstructor;
 import org.quartz.*;
 import org.springframework.stereotype.Service;
-
-import static com.vladzuev.schedulingtask.model.ScheduledTaskStatus.*;
 
 @Service
 @RequiredArgsConstructor
 public final class ScheduledTaskManager {
     private final Scheduler scheduler;
-    private final ScheduledTaskStorage taskStorage;
 
     public void run(final ScheduledTask task) {
-        final ScheduledTask savedTask = this.taskStorage.save(task);
-        this.validateId(savedTask);
-        this.doAction(ScheduledTaskManager::scheduleTask, savedTask);
+        this.doAction(ScheduledTaskManager::scheduleTask, task);
     }
 
     public void pause(final ScheduledTask task) {
-        this.validateId(task);
         this.doActionByTaskJobKey(Scheduler::pauseJob, task);
-        this.taskStorage.updateStatus(task, PAUSE);
     }
 
     //Если задача была на паузе, а потом возобновляется - будет все мгновенно все сделано, что не было сделано, пока задача была на паузе
     //Если задача не была запущена ранее или была удалена - ничего не произойдет
     public void resume(final ScheduledTask task) {
-        this.validateId(task);
         this.doActionByTaskJobKey(Scheduler::resumeJob, task);
-        this.taskStorage.updateStatus(task, ACTIVE);
     }
 
-    public void archive(final ScheduledTask task) {
-        this.validateId(task);
+    public void delete(final ScheduledTask task) {
         this.doActionByTaskJobKey(Scheduler::deleteJob, task);
-        this.taskStorage.updateStatus(task, ARCHIVE);
-    }
-
-    private void validateId(final ScheduledTask task) {
-        if (task.getId() == null) {
-            throw new ScheduledTaskManagingException("Managing task must have id");
-        }
     }
 
     private static void scheduleTask(final Scheduler scheduler, final ScheduledTask task)
