@@ -3,7 +3,6 @@ package com.vladzuev.schedulingtask.model;
 import com.vladzuev.schedulingtask.model.task.ScheduledTask;
 import com.vladzuev.schedulingtask.service.executor.ScheduledTaskExecutor;
 import lombok.RequiredArgsConstructor;
-import org.quartz.Job;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
 
@@ -12,7 +11,7 @@ import java.util.Map;
 import static com.vladzuev.schedulingtask.util.JobDetailUtil.findTask;
 
 @RequiredArgsConstructor
-public final class ScheduledJob implements Job {
+public final class ScheduledJob implements org.quartz.Job {
     private final Map<Class<? extends ScheduledTask>, ScheduledTaskExecutor<?>> executorsByTaskTypes;
 
     @Override

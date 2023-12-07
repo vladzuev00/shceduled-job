@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url:
+    username:
+    password:
+  quartz:
+    job-store-type: jdbc
+    properties:
+      org:
+        quartz:
+          threadPool:
+            threadCount: 5
