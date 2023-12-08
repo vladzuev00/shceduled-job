@@ -1,7 +1,8 @@
 package com.vladzuev.job.service;
 
+import com.vladzuev.job.model.RepeatedScheduledTask;
 import com.vladzuev.job.model.ScheduledTask;
-import com.vladzuev.job.service.executor.ScheduledTaskScheduler;
+import com.vladzuev.job.service.scheduler.ScheduledTaskScheduler;
 
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,10 @@ public final class ScheduledTaskManager {
     public ScheduledTaskManager(final List<ScheduledTaskScheduler<?>> schedulers, final int threadCount) {
         this.taskSchedulersByTypes = collectToMap(schedulers, ScheduledTaskScheduler::getTaskType);
         this.executorService = newScheduledThreadPool(threadCount);
+    }
+
+    public void schedule(final RepeatedScheduledTask task) {
+
     }
 
     public void schedule(final ScheduledTask task) {

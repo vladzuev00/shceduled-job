@@ -1,10 +1,6 @@
-package com.vladzuev.job.service.executor;
+package com.vladzuev.job.service.scheduler;
 
 import com.vladzuev.job.crud.dto.Job;
-import com.vladzuev.job.crud.dto.JobHistory;
-import com.vladzuev.job.crud.model.JobPerformingStatus;
-import com.vladzuev.job.crud.service.JobHistoryService;
-import com.vladzuev.job.service.factory.JobHistoryFactory;
 import com.vladzuev.job.service.handler.JobHandler;
 import lombok.Getter;
 

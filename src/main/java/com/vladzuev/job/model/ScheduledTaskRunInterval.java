@@ -9,19 +9,19 @@ public class ScheduledTaskRunInterval {
     int runIntervalValue;
     JobRunIntervalScale runIntervalScale;
 
-    public int findRunIntervalInSecond() {
-        return this.runIntervalValue * this.runIntervalScale.secondCount;
+    public int findRunIntervalInMillis() {
+        return this.runIntervalValue * this.runIntervalScale.millis;
     }
 
     @RequiredArgsConstructor
     public enum JobRunIntervalScale {
-        SECOND(1),
-        MINUTE(SECOND.secondCount * 60),
-        HOUR(MINUTE.secondCount * 60),
-        DAY(HOUR.secondCount * 24),
-        WEEK(DAY.secondCount * 7);
+        SECOND(1000),
+        MINUTE(SECOND.millis * 60),
+        HOUR(MINUTE.millis * 60),
+        DAY(HOUR.millis * 24),
+        WEEK(DAY.millis * 7);
 
         @Getter
-        private final int secondCount;
+        private final int millis;
     }
 }

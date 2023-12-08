@@ -12,4 +12,8 @@ public abstract class RepeatedScheduledTask extends ScheduledTask {
         super(startDateTime);
         this.runInterval = runInterval;
     }
+
+    public final long findRunIntervalInMillis() {
+        return this.runInterval.findRunIntervalInMillis();
+    }
 }
