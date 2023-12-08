@@ -12,7 +12,7 @@ import static java.lang.System.currentTimeMillis;
 public abstract class ScheduledTask {
     private final Instant startDateTime;
 
-    public final long findInitialDelayMillis() {
+    public final long findDelayMillis() {
         return this.startDateTime.toEpochMilli() - currentTimeMillis();
     }
 }

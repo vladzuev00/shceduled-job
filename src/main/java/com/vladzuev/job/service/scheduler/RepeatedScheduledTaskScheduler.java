@@ -16,7 +16,7 @@ public final class RepeatedScheduledTaskScheduler extends ScheduledTaskScheduler
 
     @Override
     protected SchedulingOperation createSchedulingOperation(final RepeatedScheduledTask task) {
-        final long initialDelayMillis = task.findInitialDelayMillis();
+        final long initialDelayMillis = task.findDelayMillis();
         final long periodMillis = task.findRunIntervalInMillis();
         return (executorService, taskExecution) -> executorService.scheduleAtFixedRate(
                 taskExecution,
