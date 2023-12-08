@@ -10,6 +10,7 @@ import static java.lang.System.currentTimeMillis;
 @RequiredArgsConstructor
 @Getter
 public abstract class ScheduledTask {
+    private final Long id;
     private final Instant startDateTime;
 
     public final long findDelayMillis() {

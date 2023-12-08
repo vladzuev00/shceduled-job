@@ -8,8 +8,8 @@ import java.time.Instant;
 public abstract class RepeatedScheduledTask extends ScheduledTask {
     private final ScheduledTaskRunInterval runInterval;
 
-    public RepeatedScheduledTask(final Instant startDateTime, final ScheduledTaskRunInterval runInterval) {
-        super(startDateTime);
+    public RepeatedScheduledTask(final Long id, final Instant startDateTime, final ScheduledTaskRunInterval runInterval) {
+        super(id, startDateTime);
         this.runInterval = runInterval;
     }
 
