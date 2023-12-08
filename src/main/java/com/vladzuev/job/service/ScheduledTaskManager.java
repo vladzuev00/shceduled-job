@@ -1,54 +1,34 @@
 package com.vladzuev.job.service;
 
+import com.vladzuev.job.model.OnceScheduledTask;
 import com.vladzuev.job.model.RepeatedScheduledTask;
-import com.vladzuev.job.model.ScheduledTask;
-import com.vladzuev.job.service.scheduler.ScheduledTaskScheduler;
+import com.vladzuev.job.service.scheduler.OnceScheduledTaskScheduler;
+import com.vladzuev.job.service.scheduler.RepeatedScheduledTaskScheduler;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ScheduledExecutorService;
 
-import static com.vladzuev.job.util.CollectionUtil.collectToMap;
 import static java.util.concurrent.Executors.newScheduledThreadPool;
 
+@Service
 public final class ScheduledTaskManager {
-    private final Map<Class<? extends ScheduledTask>, ScheduledTaskScheduler<?>> taskSchedulersByTypes;
+    private final RepeatedScheduledTaskScheduler repeatedTaskScheduler;
+    private final OnceScheduledTaskScheduler onceTaskScheduler;
     private final ScheduledExecutorService executorService;
 
-    public ScheduledTaskManager(final List<ScheduledTaskScheduler<?>> schedulers, final int threadCount) {
-        this.taskSchedulersByTypes = collectToMap(schedulers, ScheduledTaskScheduler::getTaskType);
+    public ScheduledTaskManager(final RepeatedScheduledTaskScheduler repeatedTaskScheduler,
+                                final OnceScheduledTaskScheduler onceTaskScheduler,
+                                final int threadCount) {
+        this.repeatedTaskScheduler = repeatedTaskScheduler;
+        this.onceTaskScheduler = onceTaskScheduler;
         this.executorService = newScheduledThreadPool(threadCount);
     }
 
+    public void schedule(final OnceScheduledTask task) {
+        this.onceTaskScheduler.schedule(task, this.executorService);
+    }
+
     public void schedule(final RepeatedScheduledTask task) {
-
-    }
-
-    public void schedule(final ScheduledTask task) {
-        final Class<? extends ScheduledTask> taskType = task.getClass();
-        final ScheduledTaskScheduler<?> scheduler = this.taskSchedulersByTypes.get(taskType);
-        final java.util.concurrent.ScheduledFuture<?> future = scheduler.schedule(task, this.executorService);
-    }
-
-    private static final class ScheduledTaskManagingException extends RuntimeException {
-
-        @SuppressWarnings("unused")
-        public ScheduledTaskManagingException() {
-
-        }
-
-        @SuppressWarnings("unused")
-        public ScheduledTaskManagingException(final String description) {
-            super(description);
-        }
-
-        public ScheduledTaskManagingException(final Exception cause) {
-            super(cause);
-        }
-
-        @SuppressWarnings("unused")
-        public ScheduledTaskManagingException(final String description, final Exception cause) {
-            super(description, cause);
-        }
+        this.repeatedTaskScheduler.schedule(task, this.executorService);
     }
 }

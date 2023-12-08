@@ -1,13 +1,13 @@
 package com.vladzuev.job.service.scheduler;
 
 import com.vladzuev.job.model.RepeatedScheduledTask;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
-@Service
+@Component
 public final class RepeatedScheduledTaskScheduler extends ScheduledTaskScheduler<RepeatedScheduledTask> {
 
     public RepeatedScheduledTaskScheduler(final List<ScheduledTaskHandler<? extends RepeatedScheduledTask>> handlers) {
